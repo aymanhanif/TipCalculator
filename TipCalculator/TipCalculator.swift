@@ -12,6 +12,14 @@ struct TipCalculator: View {
     @State var billString = ""
     @State var payeesString = ""
     @State var tipPercentage:Double = 0
+    
+    var billAmount:Double {
+        
+        let bill = Double(billString) ?? 0
+        let tip = bill * (Double(payeesString)! / 100)
+        return Double((bill + tip) / (Double(payeesString) ?? 0))
+        
+    }
 
     
     
@@ -23,12 +31,14 @@ struct TipCalculator: View {
                 .font(.title)
             
             TextField("Enter bill amount", text: $billString)
+                .keyboardType(.decimalPad)
                 .font(.callout)
                 .padding()
                 .frame(maxWidth: 300)
                 .cornerRadius(40)
             
             TextField("Enter number of payees", text: $payeesString)
+                .keyboardType(.numberPad)
                 .font(.callout)
                 .padding()
                 .frame(maxWidth: 300)
@@ -42,7 +52,7 @@ struct TipCalculator: View {
             
             Spacer()
             
-            Text("Split bill goes here")
+            Text("$\(billAmount, specifier: "%.2f")")
                 .font(.title)
             
             Spacer()
