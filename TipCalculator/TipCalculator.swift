@@ -13,15 +13,16 @@ struct TipCalculator: View {
     @State var payeesString = ""
     @State var tipPercentage:Double = 0
     
-    var billAmount:Double {
+    var billAmount: Double {
         
         let bill = Double(billString) ?? 0
-        let tip = bill * (Double(payeesString)! / 100)
-        return Double((bill + tip) / (Double(payeesString) ?? 0))
+        let tip = bill * (tipPercentage / 100)
+        let payees = Double(payeesString) ?? 0
         
+        let total = (bill + tip) / payees
+        
+        return total
     }
-
-    
     
     var body: some View {
         VStack {
