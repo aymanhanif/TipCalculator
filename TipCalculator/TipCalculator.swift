@@ -17,6 +17,8 @@ struct TipCalculator: View {
     
     var body: some View {
         VStack {
+            Spacer()
+            
             Text("Enter Bill Amount")
                 .font(.title)
             
@@ -38,6 +40,12 @@ struct TipCalculator: View {
             Slider(value: $tipPercentage, in: 0...100, step: 1)
             Text("\(Int(tipPercentage))%")
             
+            Spacer()
+            
+            Text("Split bill goes here")
+                .font(.title)
+            
+            Spacer()
             
         }
         .padding()
